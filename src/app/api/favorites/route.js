@@ -30,3 +30,25 @@ export async function POST(request) {
     },
   });
 }
+
+// DELETE favorites api endpoint
+export async function DELETE(request) {
+  const { favorite } = await request.json();
+  const favorites = getFavorites();
+
+  if (!favorites.includes(favorite)) {
+    return new Response("Favorite does not exist", { status: 400 });
+  }
+
+  deleteFavorite(favorite);
+
+  return new Response(
+    JSON.stringify({ message: `Favorite ${favorite} deleted`, favorite }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
