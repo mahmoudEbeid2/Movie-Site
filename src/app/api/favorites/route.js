@@ -1,21 +1,54 @@
 import {
+  getFavorites,
   addFavorite,
   deleteFavorite,
-  getFavorites,
-} from "@/lib/favorites/favoritesFunctions";
+} from "@/lib/favorites/favoritesMethods";
 
-// GET favorites
-export async function GET() {
-  const favorites = await getFavorites();
-  return new Response(JSON.stringify(favorites), { status: 200 });
+// GET favorites api endpoint
+export async function GET(request) {
+  const favorites = getFavorites();
+  return new Response(JSON.stringify(favorites), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
 
-// POST favorite or delete
+// POST favorites api endpoint
 export async function POST(request) {
-  const { id } = await request.json();
-  const favorites = await getFavorites();
+  const { favorite } = await request.json();
+  const favorites = getFavorites();
+  if (favorites.includes(favorite)) {
+    return new Response("Favorite already exists", { status: 400 });
+  }
+  addFavorite(favorite);
+  return new Response(JSON.stringify(favorite), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
 
-  await addFavorite(id);
+// DELETE favorites api endpoint
+export async function DELETE(request) {
+  const { favorite } = await request.json();
+  const favorites = getFavorites();
 
-  return new Response(JSON.stringify(favorites), { status: 200 });
+  if (!favorites.includes(favorite)) {
+    return new Response("Favorite does not exist", { status: 400 });
+  }
+
+  deleteFavorite(favorite);
+
+  return new Response(
+    JSON.stringify({ message: `Favorite ${favorite} deleted`, favorite }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 }
