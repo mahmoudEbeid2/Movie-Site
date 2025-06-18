@@ -43,9 +43,9 @@ function NavbarComponent() {
               ))}
             </NavDropdown>
             <Nav.Link 
-              href="/watchlist" 
+              href="/Wishlist" 
               className="d-flex align-items-center gap-2"
-              active={pathname === '/watchlist'}
+              active={pathname === '/Wishlist'}
             >
               <GoHeartFill size={24} />
               <span>Watchlist</span>
