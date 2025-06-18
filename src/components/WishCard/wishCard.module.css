@@ -17,18 +17,18 @@
 }
 .content {
   flex: 1;
-}
+padding-top: 35px;}
 
 .title {
-  font-size: 2.5rem;
+  font-size:1.5rem;
   font-weight: 600;
 }
 
 .iconHeart {
   color: #f6c600;
-  width: 30px;
   cursor: pointer;
   transition: transform 0.2s;
+  font-size: 1.7rem;
 }
 
 .iconHeart:hover {
@@ -65,7 +65,7 @@
 
 .desc {
   margin-top: 13px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #333;
   line-height: 1.4;
   font-weight: 400;
