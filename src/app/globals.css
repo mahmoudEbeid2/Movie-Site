@@ -4,3 +4,30 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+
+.btn-custom-yellow {
+  --bs-btn-color: #000000;
+  --bs-btn-bg: #FFE353;
+  --bs-btn-border-color: #FFE353;
+  
+  --bs-btn-hover-color: #000000;
+  --bs-btn-hover-bg: #fbda2d;
+  --bs-btn-hover-border-color: #fbbd23;
+  
+  --bs-btn-active-color: #000000;
+  --bs-btn-active-bg: #fcd820;
+  --bs-btn-active-border-color: #fbbd23;
+  --bs-btn-font-size: 0.85rem;
+
+
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(255, 227, 83, 0.5); 
+  
+  --bs-btn-border-radius: 10px;
+
+}
