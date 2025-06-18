@@ -1,8 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono,Inter } from "next/font/google";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import Navbar from "@/components/Navbar";
+import { LanguageProvider } from './contexts/LanguageContext';
+import NavbarComponent from "@/components/Navbar";
 
 
 const geistSans = Geist({
@@ -15,19 +15,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({ 
+variable:"--font-inter",
+subsets: ["latin"] });
+
 export const metadata = {
   title: "Movie App",
   description: "This is a movie app built with Next.js and powered by The Movie Database (TMDB) API.",
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
-      <body  
+      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+      <LanguageProvider>
+        <NavbarComponent />
         {children}
+      </LanguageProvider>
       </body>
     </html>
   );
