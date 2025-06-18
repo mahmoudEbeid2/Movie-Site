@@ -39,7 +39,8 @@ export default function MovieContainer({ initialMovies, initialTotalPages }) {
   }, [currentPage, language]);
 
   return (
-    <div className="container-fluid px-0 py-3 text-white">
+    <div className="container-fluid p-2 text-white">
+
       {isLoading ? (
         <div className="text-center">
           <div className="spinner-border text-light" role="status">
@@ -50,8 +51,7 @@ export default function MovieContainer({ initialMovies, initialTotalPages }) {
       ) : (
         <>
           <div
-            className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-5
-                          g-3 g-md-4 g-lg-4 mb-5 justify-content-center"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8"
           >
             {movies.map((movie) => (
               <div key={movie.id} className="col d-flex justify-content-center">

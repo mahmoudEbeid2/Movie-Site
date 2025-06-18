@@ -24,8 +24,8 @@ function NavbarComponent() {
   const currentLang = supportedLanguages.find(lang => lang.code === language) || supportedLanguages[0];
 
   return (
-    <Navbar expand="lg" className="bg-[#FFE353] fw-bold shadow-sm py-2">
-      <Container>
+    <Navbar expand="lg" className="bg-[#FFE353] fw-bold shadow-sm px-2">
+      <Container fluid>
         <Navbar.Brand href="/" className='font-semibold'>Movie App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
