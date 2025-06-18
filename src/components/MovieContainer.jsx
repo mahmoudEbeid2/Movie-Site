@@ -1,9 +1,9 @@
-'use client';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { useLanguage } from '@/app/contexts/LanguageContext';
+"use client";
+import { useState, useEffect } from "react";
+import { useLanguage } from "@/app/contexts/LanguageContext";
 import { getNowPlayingMovies } from "@/app/api/themoviedbApi";
 import PaginationComponent from "@/components/Pagination/Pagination";
+import MovieCard from "@/components/MovieCard/MovieCard"; // Import the MovieCard component
 
 export default function MovieContainer({ initialMovies, initialTotalPages }) {
   const [movies, setMovies] = useState(initialMovies);
@@ -13,49 +13,62 @@ export default function MovieContainer({ initialMovies, initialTotalPages }) {
   const { language } = useLanguage();
 
   useEffect(() => {
-    if (currentPage === 1 && language === 'en-US') {
-        return;
-    }
-
     const fetchNewMovies = async () => {
       setIsLoading(true);
-      const data = await getNowPlayingMovies(currentPage, language);
-      setMovies(data.results);
-      setTotalPages(data.total_pages);
-      setIsLoading(false);
+      try {
+        const data = await getNowPlayingMovies(currentPage, language);
+        setMovies(data.results);
+        setTotalPages(data.total_pages);
+      } catch (error) {
+        console.error("Failed to fetch movies:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
+    if (
+      currentPage === 1 &&
+      language === "en-US" &&
+      movies === initialMovies &&
+      initialMovies.length > 0
+    ) {
+      return;
+    }
 
     fetchNewMovies();
   }, [currentPage, language]);
 
   return (
-    <div className="w-full">
+    <div className="container-fluid px-2 py-5 text-white">
       {isLoading ? (
-        <div className="text-center">Loading...</div>
+        <div className="text-center my-5">
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2 text-light">Loading movies...</p>
+        </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+          <div
+            className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-5
+                          g-3 g-md-4 g-lg-4 mb-5 justify-content-center"
+          >
             {movies.map((movie) => (
-              <div key={movie.id} className="border rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  width={500}
-                  height={750}
-                  className="w-full h-auto"
-                />
-                <div className="p-2">
-                  <h3 className="font-bold text-sm truncate">{movie.title}</h3>
-                </div>
+              <div key={movie.id} className="col d-flex justify-content-center">
+                <MovieCard movie={movie} />
               </div>
             ))}
           </div>
 
-          <PaginationComponent
-            currentPage={currentPage}
-            totalPage={totalPages}
-            onPageChange={setCurrentPage}
-          />
+          {totalPages > 1 && (
+            <div className="d-flex justify-content-center mt-4">
+              <PaginationComponent
+                currentPage={currentPage}
+                totalPage={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          )}
         </>
       )}
     </div>
