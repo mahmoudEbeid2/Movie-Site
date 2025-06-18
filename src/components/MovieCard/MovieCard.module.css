@@ -1,0 +1,41 @@
+.ratingCircle {
+  position: absolute;
+  top: -20px;
+  left: 1rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border: 3px solid #212529;
+  z-index: 5;
+}
+.innerCircle {
+  background-color: #0b4446;
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.movie-card-favorite-hover {
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+.movie-card-favorite-hover:hover {
+  transform: scale(1.1);
+}
+.fs-7 {
+  font-size: 0.85rem !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.card .object-fit-cover {
+  object-fit: cover !important;
+  object-position: center !important;
+}
