@@ -4,43 +4,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import styles from "./wishCard.module.css";
 
-export default function WishCard() {
+export default function WishCard({ title, poster, date, rating, voteCount, description }) {
   return (
-    
+    <>
     <div className={styles.cardWish}>
       <div className={styles.imageContainer}>
         <Image
-          src="/images/wishImge.jpg"
-          alt="Black Widow Poster"
-          width={100}
-          height={140}
+          src={poster}
+          alt={title}
           className={styles.poster}
+          width={194}
+          height={289}
         />
       </div>
 
       <div className={styles.content}>
-        <div className={styles.header}>
-          <h2>Black Widow</h2>
+        <div className='d-flex justify-between '>
+          <h2 className={styles.title}>{title}</h2>
           <FontAwesomeIcon icon={faHeart} className={styles.iconHeart} />
         </div>
 
-        <p className={styles.date}>Sep 25, 2017</p>
+        <p className={styles.date} mb-3>{date}</p>
 
         <div className={styles.rating}>
-          <FontAwesomeIcon icon={faStar} className={styles.iconStar} />
-          <FontAwesomeIcon icon={faStar}  className={styles.iconStar} />
-          <FontAwesomeIcon icon={faStar} className={styles.iconStar}/>
-          <FontAwesomeIcon icon={faStar} className={styles.iconStar}/>
-          <FontAwesomeIcon icon={faStar}  style={{ color: "#ccc" ,width:"20px"}} />
-          <span className={styles.rate}>9288</span>
+          {[...Array(5)].map((_, i) => (
+            <FontAwesomeIcon
+              key={i}
+              icon={faStar}
+              className={styles.iconStar} 
+              style={{ color: i < rating ? "black" : "#ccc" }}
+            />
+          ))}
+          <span className={styles.rate}>{voteCount}</span>
         </div>
 
-        <p className={styles.desc}>
-          Natasha Romanoff, also known as Black Widow, confronts the darker
-          parts of her ledger when a dangerous conspiracy with ties to her past
-          arises. Pursued by....
-        </p>
+        <p className={styles.desc}>{description}</p>
       </div>
     </div>
+    </>
   );
 }
+
+
+
+

@@ -1,0 +1,30 @@
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 24px;
+}
+@media screen and (max-width: 725px) {
+
+  .grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  
+  }
+}
+
+.noMoviescontent{
+  display: grid;
+  justify-content: center;
+margin-top: 10%;}
+.btnBack{
+  border-radius: 10px;
+background: #FFE353;
+padding: 7px  ;
+margin-top: 20px;
+}
+.noMovies{
+  color: #000;
+margin-top: 40px;
+font-size: 24px;
+font-weight: 400;
+}
