@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { getNowPlayingMovies } from "@/app/api/themoviedbApi";
 import PaginationComponent from "@/components/Pagination/Pagination";
-import MovieCard from "@/components/MovieCard/MovieCard"; 
+import MovieCard from "@/components/MovieCard/MovieCard";
 
 export default function MovieContainer({ initialMovies, initialTotalPages }) {
   const [movies, setMovies] = useState(initialMovies);
@@ -40,8 +40,9 @@ export default function MovieContainer({ initialMovies, initialTotalPages }) {
 
   return (
     <div className="container-fluid p-2 text-white">
+
       {isLoading ? (
-        <div className="text-center my-5">
+        <div className="text-center">
           <div className="spinner-border text-light" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

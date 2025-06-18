@@ -52,8 +52,8 @@ export default function MovieCard({ movie }) {
           />
 
           <div
-            className="position-absolute top-0 end-0 m-2 bg-white bg-opacity-50 rounded-circle d-flex justify-content-center align-items-center"
-            style={{ width: "32px", height: "32px", zIndex: 10 }}
+            className="position-absolute top-0 end-0 m-2 bg-white bg-opacity-50 rounded-circle d-flex justify-content-center align-items-center overflow-auto"
+            style={{ width: "32px", height: "32px", zIndex: 1000 }}
           >
             <span className="text-white lh-1 fw-bold">&#x22EF;</span>
           </div>
