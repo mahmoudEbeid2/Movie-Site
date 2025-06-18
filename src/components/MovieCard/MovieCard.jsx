@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./MovieCard.module.css";
+import Image from "next/image";
 
 const getRatingColor = (score) => {
   if (score >= 70) return "#4CAF50";
@@ -16,12 +16,7 @@ export default function MovieCard({ movie }) {
   const rating = Math.round(vote_average * 10);
   const ratingColor = getRatingColor(rating);
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const handleFavoriteToggle = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsFavorite(!isFavorite);
-  };
+  const [loading, setLoading] = useState(false);
 
   const formattedReleaseDate = release_date
     ? new Date(release_date).toLocaleDateString("en-US", {
@@ -35,13 +30,90 @@ export default function MovieCard({ movie }) {
     ? `https://image.tmdb.org/t/p/w500${poster_path}`
     : "/images/placeholder-movie-poster.png";
 
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      try {
+        const res = await fetch("/api/favorites/check", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          setIsFavorite(data.exists);
+        } else {
+          console.error("Failed to check favorite status");
+        }
+      } catch (err) {
+        console.error("Error checking favorite status:", err);
+      }
+    };
+    checkFavoriteStatus();
+  }, [id]);
+
+  const handleFavoriteToggle = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (loading) return;
+    setLoading(true);
+
+    const newState = !isFavorite;
+
+    if (newState) {
+      try {
+        const res = await fetch("/api/favorites", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+            title,
+            image: imageUrl,
+            rate: vote_average,
+            date: release_date,
+          }),
+        });
+
+        if (res.ok) {
+          setIsFavorite(true);
+        } else {
+          const data = await res.json();
+          console.error(data.message || "Error adding to watchlist");
+          setIsFavorite(false);
+        }
+      } catch (err) {
+        console.error("Error adding to favorites:", err);
+        setIsFavorite(false);
+      }
+    } else {
+      try {
+        const res = await fetch("/api/favorites", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+
+        if (res.ok) {
+          setIsFavorite(false);
+        } else {
+          const data = await res.json();
+          console.error(data.message || "Error removing from watchlist");
+          setIsFavorite(true);
+        }
+      } catch (err) {
+        console.error("Error removing from favorites:", err);
+        setIsFavorite(true);
+      }
+    }
+
+    setLoading(false);
+  };
+
   return (
     <Link href={`/movie/${id}`} passHref className="text-decoration-none">
       <div className="card h-100 border-0 shadow text-white position-relative movie-card">
-        <div
-          className="position-relative overflow-hidden bg-secondary rounded"
-          //   style={{ paddingTop: "150%" }}
-        >
+        <div className="position-relative overflow-hidden bg-secondary rounded">
           <Image
             src={imageUrl}
             alt={title}
