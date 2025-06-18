@@ -1,0 +1,29 @@
+.pagination-custom-yellow .page-link {
+  color:black;
+  background-color:white;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+  cursor:pointer;
+  font-weight: 400;
+}
+
+.pagination-custom-yellow .page-item.active .page-link {
+  background-color: #FFE353;
+  color: black;
+}
+
+.pagination-custom-yellow .page-link:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.5);
+}
+
+.pagination-custom-yellow .page-link span[aria-hidden="true"] {
+  font-size: 1.5rem;   
+  font-weight: 400;   
+  line-height: 1;  
+}
