@@ -1,54 +1,44 @@
-import {
-  getFavorites,
-  addFavorite,
-  deleteFavorite,
-} from "@/lib/favorites/favoritesMethods";
+import Favorite from "../../../lib/models/Favorite";
+import { connectDB } from "../../../lib/db";
+import { NextResponse } from "next/server";
 
-// GET favorites api endpoint
-export async function GET(request) {
-  const favorites = getFavorites();
-  return new Response(JSON.stringify(favorites), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+// ✅ GET
+export async function GET() {
+  await connectDB();
+  const favorites = await Favorite.find({});
+  return NextResponse.json(favorites);
 }
 
-// POST favorites api endpoint
+// ✅ POST:
 export async function POST(request) {
-  const { favorite } = await request.json();
-  const favorites = getFavorites();
-  if (favorites.includes(favorite)) {
-    return new Response("Favorite already exists", { status: 400 });
+  await connectDB();
+  const body = await request.json();
+
+  const exists = await Favorite.findOne({ id: body.id });
+  if (exists) {
+    return NextResponse.json(
+      { message: "Favorite already exists" },
+      { status: 400 }
+    );
   }
-  addFavorite(favorite);
-  return new Response(JSON.stringify(favorite), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+
+  const favorite = await Favorite.create(body);
+  return NextResponse.json(favorite);
 }
 
-// DELETE favorites api endpoint
+// DELETE:
 export async function DELETE(request) {
-  const { favorite } = await request.json();
-  const favorites = getFavorites();
+  await connectDB();
+  const { id } = await request.json();
 
-  if (!favorites.includes(favorite)) {
-    return new Response("Favorite does not exist", { status: 400 });
+  const deleted = await Favorite.findOneAndDelete({ id });
+  if (!deleted) {
+    return NextResponse.json(
+      { message: "Favorite not found" },
+      { status: 404 }
+    );
   }
 
-  deleteFavorite(favorite);
-
-  return new Response(
-    JSON.stringify({ message: `Favorite ${favorite} deleted`, favorite }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  return NextResponse.json({ message: `Favorite ${id} deleted` });
+>>>>>>> bc248d2ea7da7feebc2e78537a8ea9f436b3b4e2
 }
