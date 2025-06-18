@@ -11,7 +11,15 @@ const getRatingColor = (score) => {
 };
 
 export default function MovieCard({ movie }) {
-  const { id, title, poster_path, vote_average, release_date } = movie;
+  const {
+    id,
+    title,
+    poster_path,
+    vote_average,
+    release_date,
+    vote_count,
+    overview,
+  } = movie;
 
   const rating = Math.round(vote_average * 10);
   const ratingColor = getRatingColor(rating);
@@ -72,6 +80,8 @@ export default function MovieCard({ movie }) {
             image: imageUrl,
             rate: vote_average,
             date: release_date,
+            numberOfRating: vote_count,
+            description: overview,
           }),
         });
 
