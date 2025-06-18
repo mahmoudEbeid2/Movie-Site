@@ -51,9 +51,7 @@ export default function WishCard({
         </div>
 
         <p className={styles.desc}>
-          {description.length > 100
-            ? description.slice(0, 150) + "..."
-            : description}
+          {description > 100 ? description.slice(0, 150) + "..." : description}
         </p>
       </div>
     </div>
