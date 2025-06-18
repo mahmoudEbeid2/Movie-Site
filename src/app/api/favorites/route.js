@@ -40,5 +40,4 @@ export async function DELETE(request) {
   }
 
   return NextResponse.json({ message: `Favorite ${id} deleted` });
->>>>>>> bc248d2ea7da7feebc2e78537a8ea9f436b3b4e2
 }
