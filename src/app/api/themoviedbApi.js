@@ -6,7 +6,7 @@ const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}`,
   }
 };
 
@@ -29,14 +29,11 @@ async function fetchFromTMDB(path, params = {}) {
   }
 }
 
-export async function getNowPlayingMovies() {
+export async function getNowPlayingMovies(page = 1, language = 'en-US') {
   const path = '/movie/now_playing';
-  const params = {
-    language: 'en-US',
-    page: 1
-  };
+  const params = { language, page };
   const data = await fetchFromTMDB(path, params);
-  return data.results;
+  return data;
 }
 
 
