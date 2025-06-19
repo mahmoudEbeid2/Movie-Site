@@ -27,15 +27,19 @@ export default function WishListPage() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:3000/api/favorites/${id}`, {
+      await fetch("http://localhost:3000/api/favorites", {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
       });
-      setWishlist((prev) => prev.filter((item) => item._id !== id));
+
+      setWishlist((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
       console.error("Error deleting item", error);
     }
   };
-
   return (
     <div className="container py-5">
       <h2 className="fw-600  mb-4">Watch List</h2>
@@ -44,8 +48,8 @@ export default function WishListPage() {
         <div className={styles.grid}>
           {wishlist.map((item) => (
             <WishCard
-              key={item._id}
-              id={item._id}
+              key={item.id}
+              id={item.id}
               title={item.title}
               poster={item.image}
               date={item.date}
