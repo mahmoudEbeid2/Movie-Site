@@ -8,6 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { GoHeartFill } from "react-icons/go";
 
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { useFavorites } from "@/app/contexts/FavoritesContext";
 
 const supportedLanguages = [
   { code: "en-US", name: "English", short: "EN" },
@@ -20,6 +21,7 @@ function NavbarComponent() {
   const pathname = usePathname();
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
+  const { count } = useFavorites();
 
   const currentLang =
     supportedLanguages.find((lang) => lang.code === language) ||
@@ -34,7 +36,10 @@ function NavbarComponent() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-[#FFE353] fw-bold shadow-sm px-2">
+    <Navbar
+      expand="lg"
+      className="bg-[#FFE353] fw-bold shadow-sm px-2 fixed-top"
+    >
       <Container fluid>
         <Nav.Link as={"button"} onClick={goToHome} className="font-semibold">
           Movie App
@@ -69,6 +74,23 @@ function NavbarComponent() {
               <GoHeartFill size={24} />
               <span>WatchList</span>
             </Nav.Link>
+
+            <div
+              style={{
+                minWidth: "20px",
+                height: "20px",
+                background: "white",
+                padding: "0 6px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "12px",
+                color: "black",
+                fontWeight: "bold",
+              }}
+            >
+              {count}
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>

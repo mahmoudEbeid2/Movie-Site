@@ -3,10 +3,12 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import WishCard from "@/components/wishcard/wishCard";
 import styles from "./wishlist.module.css";
+import { useFavorites } from "@/app/contexts/FavoritesContext";
 
 export default function WishListPage() {
   const [wishlist, setWishlist] = useState([]);
   const router = useRouter();
+  const { fetchFavorites } = useFavorites();
 
   function goToHome() {
     router.push("/");
@@ -18,7 +20,7 @@ export default function WishListPage() {
 
   const fetchWishlist = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/favorites", {
+      const res = await fetch("/api/favorites", {
         cache: "no-store",
       });
       const data = await res.json();
@@ -32,7 +34,7 @@ export default function WishListPage() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch("http://localhost:3000/api/favorites", {
+      await fetch("/api/favorites", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -41,6 +43,7 @@ export default function WishListPage() {
       });
 
       setWishlist((prev) => prev.filter((item) => item.id !== id));
+      fetchFavorites();
     } catch (error) {
       console.error("Error deleting item", error);
     }
@@ -82,7 +85,7 @@ export default function WishListPage() {
               d="M209.456 2.14107C206.601 -0.71369 201.876 -0.71369 199.021 2.14107L175.987 25.176C168.21 20.7462 159.153 18.1868 149.506 18.1868C131.689 18.1868 115.741 26.8495 105.799 40.1389C95.8564 26.8495 79.9086 18.1868 62.091 18.1868C31.8699 18.1868 7.35839 42.7968 7.35839 73.2147C7.35839 84.9291 9.22874 95.7574 12.4773 105.798C18.8759 126.175 30.8855 143.205 44.4703 156.692L2.14107 199.021C-0.71369 201.876 -0.71369 206.601 2.14107 209.456C3.61767 210.932 5.48803 211.621 7.35839 211.621C9.22874 211.621 11.0991 210.932 12.5757 209.456L209.456 12.5757C212.311 9.72094 212.311 4.99583 209.456 2.14107Z"
               fill="#D1D1D1"
             />
-          </svg>{" "}
+          </svg>
           <p className={styles.noMovies}>No Movies in watch list</p>
           <button className={styles.btnBack} onClick={() => goToHome()}>
             Back to Home
