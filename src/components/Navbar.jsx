@@ -1,7 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -19,18 +18,28 @@ const supportedLanguages = [
 
 function NavbarComponent() {
   const pathname = usePathname();
+  const router = useRouter();
   const { language, setLanguage } = useLanguage();
 
   const currentLang =
     supportedLanguages.find((lang) => lang.code === language) ||
     supportedLanguages[0];
 
+  const goToWishList = () => {
+    router.push("/WishList");
+  };
+
+  const goToHome = () => {
+    router.push("/");
+  };
+
   return (
     <Navbar expand="lg" className="bg-[#FFE353] fw-bold shadow-sm px-2">
       <Container fluid>
-        <Navbar.Brand href="/" className="font-semibold">
+        <Nav.Link as={"button"} onClick={goToHome} className="font-semibold">
           Movie App
-        </Navbar.Brand>
+        </Nav.Link>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav className="align-items-center gap-3">
@@ -48,10 +57,14 @@ function NavbarComponent() {
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
+
             <Nav.Link
-              href="/WishList"
-              className="d-flex align-items-center gap-2"
-              active={pathname === "/WishList"}
+              as="button"
+              onClick={goToWishList}
+              className={`d-flex align-items-center gap-2 btn btn-link m-0 p-0 text-start ${
+                pathname === "/WishList" ? "active" : ""
+              }`}
+              style={{ background: "none", border: "none" }}
             >
               <GoHeartFill size={24} />
               <span>WatchList</span>
