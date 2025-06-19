@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./MovieCard.module.css";
 import Image from "next/image";
+import styles from "./MovieCard.module.css";
+
+import { useFavorites } from "@/app/contexts/FavoritesContext";
 
 const getRatingColor = (score) => {
   if (score >= 70) return "#4CAF50";
@@ -25,6 +27,8 @@ export default function MovieCard({ movie }) {
   const ratingColor = getRatingColor(rating);
   const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const { fetchFavorites } = useFavorites();
 
   const formattedReleaseDate = release_date
     ? new Date(release_date).toLocaleDateString("en-US", {
@@ -87,6 +91,7 @@ export default function MovieCard({ movie }) {
 
         if (res.ok) {
           setIsFavorite(true);
+          fetchFavorites();
         } else {
           const data = await res.json();
           console.error(data.message || "Error adding to watchlist");
@@ -106,6 +111,7 @@ export default function MovieCard({ movie }) {
 
         if (res.ok) {
           setIsFavorite(false);
+          fetchFavorites();
         } else {
           const data = await res.json();
           console.error(data.message || "Error removing from watchlist");
