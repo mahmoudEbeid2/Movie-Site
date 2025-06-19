@@ -1,11 +1,16 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import WishCard from "@/components/wishcard/wishCard";
 import styles from "./wishlist.module.css";
 
 export default function WishListPage() {
   const [wishlist, setWishlist] = useState([]);
+  const router = useRouter();
+
+  function goToHome() {
+    router.push("/");
+  }
 
   useEffect(() => {
     fetchWishlist();
@@ -79,12 +84,9 @@ export default function WishListPage() {
             />
           </svg>{" "}
           <p className={styles.noMovies}>No Movies in watch list</p>
-          <button
-            className={styles.btnBack}
-            onClick={() => (window.location.href = "/")}
-          >
+          <button className={styles.btnBack} onClick={() => goToHome()}>
             Back to Home
-          </button>{" "}
+          </button>
         </div>
       )}
     </div>
