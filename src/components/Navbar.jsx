@@ -49,7 +49,7 @@ function NavbarComponent() {
               ))}
             </NavDropdown>
             <Nav.Link
-              href="/Wishlist"
+              href="/WishList"
               className="d-flex align-items-center gap-2"
               active={pathname === "/WishList"}
             >
