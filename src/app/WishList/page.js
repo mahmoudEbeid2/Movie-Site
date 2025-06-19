@@ -79,7 +79,12 @@ export default function WishListPage() {
             />
           </svg>{" "}
           <p className={styles.noMovies}>No Movies in watch list</p>
-          <button className={styles.btnBack}>Back to home</button>
+          <button
+            className={styles.btnBack}
+            onClick={() => (window.location.href = "/")}
+          >
+            Back to Home
+          </button>{" "}
         </div>
       )}
     </div>
