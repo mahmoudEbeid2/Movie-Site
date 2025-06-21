@@ -109,7 +109,7 @@
 @media screen and (max-width: 725px) {
   .cardWish {
     padding: 20x;
-    width: 90%;
+    width: 100%;
     justify-content: center;
     margin: 0 auto;
     flex-direction: column;
@@ -137,6 +137,7 @@
     height: auto;
     margin: auto;
   }
+  
 }
 .grid {
   display: grid;
@@ -146,7 +147,7 @@
 @media screen and (max-width: 725px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
-    width: 90%;
+    width: 100%;
     margin: 2rem auto;
   }
 }
