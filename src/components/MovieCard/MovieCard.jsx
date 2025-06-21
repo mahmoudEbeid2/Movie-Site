@@ -12,7 +12,7 @@ const getRatingColor = (score) => {
   return "#F44336";
 };
 
-export default function MovieCard({ movie,useFav=true }) {
+export default function MovieCard({ movie, useFav = true }) {
   const {
     id,
     title,
@@ -147,7 +147,8 @@ export default function MovieCard({ movie,useFav=true }) {
           </div>
         </div>
 
-        <div className="card-body p-3 position-relative pb-3 pt-5">
+        <div className="card-body p-3 position-relative pt-5 d-flex flex-column justify-content-between">
+          {" "}
           <div
             className={styles.ratingCircle}
             style={{
@@ -158,38 +159,39 @@ export default function MovieCard({ movie,useFav=true }) {
               <span className="fs-6 fw-bold text-white">{rating}%</span>
             </div>
           </div>
-
-          <div className="d-flex justify-content-between justify-content-center align-items-center">
-            <div>
-              <h5 className="card-title fw-bold fs-6 mt-1 mb-1 text-dark lh-sm">
-                {title}
-              </h5>
-              <p className="card-text text-secondary fs-7">
-                {formattedReleaseDate}
-              </p>
-            </div>
-
-           {useFav? <div
-              className="position-absolute bottom-0 end-0 m-3 movie-card-favorite-hover cursor-pointer"
-              onClick={handleFavoriteToggle}
-              style={{ zIndex: 150 }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill={isFavorite ? "#FFD700" : "none"}
-                stroke={isFavorite ? "#FFD700" : "#d1d5db"}
-                strokeWidth="1.5"
-                className="d-block"
-                style={{ width: "24px", height: "24px" }}
+          <div className="px-1 mb-2">
+            {" "}
+            <h5 className="card-title fw-bold fs-6 mt-1 mb-1 text-dark lh-sm">
+              {title}
+            </h5>
+          </div>
+          <div className="d-flex justify-content-between align-items-center mt-auto px-1">
+            <p className="card-text text-secondary mb-0 fs-7">
+              {formattedReleaseDate}
+            </p>
+            {useFav && (
+              <div
+                className="movie-card-favorite-hover cursor-pointer ms-2"
+                onClick={handleFavoriteToggle}
+                style={{ zIndex: 150 }}
               >
-                <path
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.099 3.75 3 5.835 3 8.25c0 7.219 2.912 11.455 9 16.062 6.088-4.607 9-8.843 9-16.062z"
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>:""}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill={isFavorite ? "#FFD700" : "none"}
+                  stroke={isFavorite ? "#FFD700" : "#d1d5db"}
+                  strokeWidth="1.5"
+                  className="d-block"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <path
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.099 3.75 3 5.835 3 8.25c0 7.219 2.912 11.455 9 16.062 6.088-4.607 9-8.843 9-16.062z"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
         </div>
       </div>

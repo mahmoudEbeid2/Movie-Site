@@ -39,3 +39,18 @@
   object-fit: cover !important;
   object-position: center !important;
 }
+
+.responsive-text {
+  font-size: 5px !important;
+}
+
+@media (max-width: 768px) {
+  .responsive-text {
+    font-size: 5px !important;
+  }
+}
+@media (max-width: 576px) {
+  .responsive-text {
+    font-size: 5px !important;
+  }
+}
