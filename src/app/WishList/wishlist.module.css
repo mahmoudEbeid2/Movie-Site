@@ -1,5 +1,7 @@
 .grid {
   display: grid;
+  justify-content: center;
+  align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 24px;
 }
@@ -7,10 +9,7 @@
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
-}
-
-
-.noMoviescontent {
+}.noMoviescontent {
   display: grid;
   justify-content: center;
   margin-top: 10%;

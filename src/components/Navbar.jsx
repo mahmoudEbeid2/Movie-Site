@@ -37,6 +37,7 @@ function NavbarComponent() {
 
   return (
     <Navbar
+      style={{ overflow: "hidden" }}
       expand="lg"
       className="bg-[#FFE353] fw-bold shadow-sm px-2 fixed-top"
     >
@@ -87,6 +88,7 @@ function NavbarComponent() {
                 fontSize: "12px",
                 color: "black",
                 fontWeight: "bold",
+                borderRadius: "3px",
               }}
             >
               {count}
