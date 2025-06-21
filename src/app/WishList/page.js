@@ -1,9 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import WishCard from "@/components/wishcard/wishCard";
 import styles from "./wishlist.module.css";
 import { useFavorites } from "@/app/contexts/FavoritesContext";
+ 
 
 export default function WishListPage() {
   const [wishlist, setWishlist] = useState([]);
@@ -55,8 +57,9 @@ export default function WishListPage() {
       {wishlist.length > 0 ? (
         <div className={styles.grid}>
           {wishlist.map((item) => (
+            
             <WishCard
-              key={item.id}
+             key={item.id}
               id={item.id}
               title={item.title}
               poster={item.image}
@@ -66,6 +69,7 @@ export default function WishListPage() {
               description={item.description}
               handleDelete={handleDelete}
             />
+            
           ))}
         </div>
       ) : (

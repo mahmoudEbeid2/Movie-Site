@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import styles from "./wishCard.module.css";
+import Link from "next/link";
 
 export default function WishCard({
   id,
@@ -16,6 +17,7 @@ export default function WishCard({
 }) {
   return (
     <div className={styles.cardWish}>
+      <Link style={{textDecoration:"none"}} href={`/movie/${id}`}  >
       <div className={styles.imageContainer}>
         <Image
           src={poster}
@@ -25,6 +27,7 @@ export default function WishCard({
           height={289}
         />
       </div>
+      </Link>
 
       <div className={styles.content}>
         <div className="d-flex justify-between">
@@ -55,5 +58,6 @@ export default function WishCard({
         </p>
       </div>
     </div>
+   
   );
 }
