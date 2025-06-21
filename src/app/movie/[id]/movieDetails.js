@@ -150,7 +150,7 @@ export default function MovieDetails({
               style={{ color: i < rating ? "black" : "#ccc" }}
             />
           ))}
-          <span className={styles.rate}>{voteCount}</span>
+          <span className={styles.rate}>{Math.floor(voteCount)}</span>
         </div>
 
         <p className={styles.desc}>{description}</p>
@@ -176,6 +176,8 @@ export default function MovieDetails({
             alt={production_companies[0].name}
             width={150}
             height={100}
+            priority
+            className={styles.companyLogo}
           />
           <p className="ms-5 my-4">{production_companies[0].name}</p>
         </div>

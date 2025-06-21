@@ -6,12 +6,9 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   gap: 16px;
+  margin-bottom: 30px;
 }
-/* .imageContainer{
-    width: 412px;
-    height: 618px;
-     overflow: hidden; 
-} */
+
 .genreButton{
     color: #333;
     background-color: #f6c600;
@@ -21,9 +18,9 @@
     margin: 10px;
     /* font-weight: 600; */
 }
-.cardWish:hover {
+/* .cardWish:hover {
   transform: translateY(-5px);
-}
+} */
 
 .poster {
   border-radius: 27px;
@@ -126,13 +123,20 @@ padding-top: 35px;}
     width: 100%;
   }
   .poster {
-    width: 350px;
+    /* width: 350px; */
     height: auto;
   }
 }
 @media screen and (max-width: 400px) {
   .desc {
-    width: 70%;
+    width: 90%;
+    margin: auto;
+
+  }
+  .companyLogo{
+    width: 100px;
+    height: auto;
+    margin: auto;
   }
 }
 .grid {
@@ -142,7 +146,7 @@ padding-top: 35px;}
 }
 @media screen and (max-width: 725px) {
   .grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
     width: 90%;
     margin:2rem auto;
   }
