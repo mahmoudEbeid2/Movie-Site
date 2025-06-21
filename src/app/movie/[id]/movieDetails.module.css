@@ -12,14 +12,14 @@
     height: 618px;
      overflow: hidden; 
 } */
-.genreButton{
-    color: #333;
-    background-color: #f6c600;
-    border-color: #f6c600;
-    padding: 10px;
-    border-radius: 25px;
-    margin: 10px;
-    /* font-weight: 600; */
+.genreButton {
+  color: #333;
+  background-color: #f6c600;
+  border-color: #f6c600;
+  padding: 10px;
+  border-radius: 25px;
+  margin: 10px;
+  /* font-weight: 600; */
 }
 .cardWish:hover {
   transform: translateY(-5px);
@@ -27,14 +27,14 @@
 
 .poster {
   border-radius: 27px;
-
 }
 .content {
   flex: 1;
-padding-top: 35px;}
+  padding-top: 35px;
+}
 
 .title {
-  font-size:1.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -108,11 +108,10 @@ padding-top: 35px;}
     height: auto;
     margin: auto;
   }
-  
 }
 @media screen and (max-width: 725px) {
   .cardWish {
-    padding:20x;
+    padding: 20x;
     width: 90%;
     justify-content: center;
     margin: 0 auto;
@@ -144,7 +143,7 @@ padding-top: 35px;}
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     width: 90%;
-    margin:2rem auto;
+    margin: 2rem auto;
   }
 }
 

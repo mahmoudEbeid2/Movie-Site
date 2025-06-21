@@ -1,5 +1,7 @@
 .grid {
   display: grid;
+  justify-content: center;
+  align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 24px;
 }
@@ -8,7 +10,6 @@
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 }
-
 
 .noMoviescontent {
   display: grid;
@@ -21,8 +22,8 @@
   padding: 7px;
   margin-top: 20px;
 }
-.link{
-  text-decoration:none;
+.link {
+  text-decoration: none;
 }
 .noMovies {
   color: #000;

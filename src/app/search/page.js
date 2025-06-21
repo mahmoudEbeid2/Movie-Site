@@ -1,11 +1,13 @@
-import React from 'react';
-import Link from 'next/link';
-import SearchForm from '@/components/SearchForm';
-import { searchByQuery } from '@/app/api/themoviedbApi';
-import SearchResultsContainer from '@/components/SearchResultsContainer';
-
+import React from "react";
+import Link from "next/link";
+import SearchForm from "@/components/SearchForm";
+import { searchByQuery } from "@/app/api/themoviedbApi";
+import SearchResultsContainer from "@/components/SearchResultsContainer";
+export const metadata = {
+  title: "Search | Movie App",
+};
 export default async function SearchPage({ searchParams }) {
-  const query = searchParams.query || '';
+  const query = searchParams.query || "";
   const initialData = await searchByQuery(query);
 
   return (
@@ -14,13 +16,16 @@ export default async function SearchPage({ searchParams }) {
         <div className="my-8">
           <SearchForm initialValue={query} />
         </div>
-        <p className="text-base font-bold mb-2">Search Results for: <span className="text-base font-normal">{query}</span></p>
+        <p className="text-base font-bold mb-2">
+          Search Results for:{" "}
+          <span className="text-base font-normal">{query}</span>
+        </p>
         <div className="mt-8">
-            <SearchResultsContainer 
-                initialMovies={initialData.results}
-                initialTotalPages={initialData.total_pages}
-                query={query}
-            />
+          <SearchResultsContainer
+            initialMovies={initialData.results}
+            initialTotalPages={initialData.total_pages}
+            query={query}
+          />
         </div>
       </div>
     </main>
