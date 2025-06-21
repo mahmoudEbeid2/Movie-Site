@@ -1,0 +1,167 @@
+.cardWish {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 19px;
+  padding: 16px 36px 16px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  gap: 16px;
+}
+/* .imageContainer{
+    width: 412px;
+    height: 618px;
+     overflow: hidden; 
+} */
+.genreButton{
+    color: #333;
+    background-color: #f6c600;
+    border-color: #f6c600;
+    padding: 10px;
+    border-radius: 25px;
+    margin: 10px;
+    /* font-weight: 600; */
+}
+.cardWish:hover {
+  transform: translateY(-5px);
+}
+
+.poster {
+  border-radius: 27px;
+
+}
+.content {
+  flex: 1;
+padding-top: 35px;}
+
+.title {
+  font-size:1.5rem;
+  font-weight: 600;
+}
+
+.iconHeart {
+  color: rgba(128, 128, 128, 0.548);
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-size: 1.7rem;
+}
+.iconHeart.active {
+  color: #f6c600;
+}
+
+.iconHeart:hover {
+  transform: scale(1.2);
+}
+
+.date {
+  font-size: 0.65rem;
+  color: #858585;
+
+  margin: 4px 0;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 6px 0;
+}
+
+.rating svg {
+  color: #000000;
+}
+
+.iconStar {
+  width: 20px;
+  color: #000000;
+}
+
+.rate {
+  margin-left: 8px;
+  color: #444;
+}
+
+.desc {
+  margin-top: 13px;
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 400;
+  width: 93%;
+}
+@media screen and (max-width: 996px) {
+  .cardWish {
+    padding: 4px 10px;
+    /* width: 80%; */
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .desc {
+    font-size: 0.7rem;
+    width: 100%;
+  }
+  .poster {
+    width: 90%;
+    height: auto;
+    margin: auto;
+  }
+  
+}
+@media screen and (max-width: 725px) {
+  .cardWish {
+    padding:20x;
+    width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .desc {
+    font-size: 0.7rem;
+    width: 100%;
+  }
+  .poster {
+    width: 350px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 400px) {
+  .desc {
+    width: 70%;
+  }
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 24px;
+}
+@media screen and (max-width: 725px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    width: 90%;
+    margin:2rem auto;
+  }
+}
+
+.noMoviescontent {
+  display: grid;
+  justify-content: center;
+  margin-top: 10%;
+}
+.btnBack {
+  border-radius: 10px;
+  background: #ffe353;
+  padding: 7px;
+  margin-top: 20px;
+}
+.noMovies {
+  color: #000;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 400;
+}

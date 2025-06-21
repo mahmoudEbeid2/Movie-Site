@@ -12,7 +12,7 @@ const getRatingColor = (score) => {
   return "#F44336";
 };
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie,useFav=true }) {
   const {
     id,
     title,
@@ -169,7 +169,7 @@ export default function MovieCard({ movie }) {
               </p>
             </div>
 
-            <div
+           {useFav? <div
               className="position-absolute bottom-0 end-0 m-3 movie-card-favorite-hover cursor-pointer"
               onClick={handleFavoriteToggle}
               style={{ zIndex: 150 }}
@@ -189,7 +189,7 @@ export default function MovieCard({ movie }) {
                   clipRule="evenodd"
                 />
               </svg>
-            </div>
+            </div>:""}
           </div>
         </div>
       </div>

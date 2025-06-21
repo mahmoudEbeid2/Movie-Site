@@ -11,7 +11,7 @@ export default function MovieContainer({ initialMovies, initialTotalPages }) {
   const [totalPages, setTotalPages] = useState(initialTotalPages);
   const [isLoading, setIsLoading] = useState(false);
   const { language } = useLanguage();
-
+console.log(language)
   useEffect(() => {
     const fetchNewMovies = async () => {
       setIsLoading(true);
